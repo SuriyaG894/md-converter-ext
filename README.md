@@ -81,6 +81,18 @@ Choose your format using the toggle (PDF / Word) and click **Download**:
 - **PDF** — Generates a print-ready PDF with A4 formatting
 - **Word** — Generates a `.docx` file with proper heading styles, lists, code blocks, and tables
 
+## Screenshots
+
+### Extension Open / Upload File
+
+![MD Converter Upload File](assets/screenshot-upload.png)
+
+### Preview Mode
+
+![MD Converter Preview](assets/screenshot-preview.png)
+
+> Screenshots show the extension upload/file selection screen and the live preview screen.
+
 ## Project Structure
 
 ```
