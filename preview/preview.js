@@ -10,6 +10,7 @@
   const fileNameEl = document.getElementById('file-name');
   const wordCountEl = document.getElementById('word-count');
   const formatBtns = document.querySelectorAll('.fmt-btn');
+  const btnBack = document.getElementById('btn-back');
   const btnDownload = document.getElementById('btn-download');
 
   let currentMarkdown = '';
@@ -77,6 +78,53 @@
       btn.classList.add('active');
       selectedFormat = btn.dataset.format;
     });
+  });
+
+  function openPopupFallback() {
+    const popupUrl = chrome.runtime.getURL('popup/popup.html');
+    const width = 540;
+    const height = 700;
+    const left = Math.max(0, Math.round((window.screen.availWidth - width) / 2));
+    const top = Math.max(0, Math.round((window.screen.availHeight - height) / 2));
+    const specs = `toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=${width},height=${height},left=${left},top=${top}`;
+    const popupWindow = window.open(popupUrl, '_blank', specs);
+    if (popupWindow) {
+      popupWindow.focus();
+    }
+    window.close();
+  }
+
+  btnBack?.addEventListener('click', async () => {
+    try {
+      await chrome.storage.local.remove(['mdContent', 'fileName']);
+    } catch (err) {
+      console.warn('Could not clear preview data', err);
+    }
+
+    const popupMessage = {
+      action: 'openCenteredPopup',
+      url: chrome.runtime.getURL('popup/popup.html'),
+      width: 540,
+      height: 700,
+      availWidth: window.screen.availWidth,
+      availHeight: window.screen.availHeight
+    };
+
+    let messageHandled = false;
+    chrome.runtime.sendMessage(popupMessage, () => {
+      messageHandled = true;
+      if (chrome.runtime.lastError) {
+        openPopupFallback();
+      } else {
+        window.close();
+      }
+    });
+
+    setTimeout(() => {
+      if (!messageHandled) {
+        openPopupFallback();
+      }
+    }, 300);
   });
 
   btnDownload.addEventListener('click', async () => {

@@ -20,6 +20,8 @@
   const statusEl = document.getElementById('status');
 
   // ─── State ───
+  const POPUP_WIDTH = 540;
+  const POPUP_HEIGHT = 700;
   let currentMarkdown = '';
   let currentFileName = 'document.md';
 
@@ -113,6 +115,18 @@
     btnPreview.disabled = text.trim().length === 0;
   }
 
+  function centerWindow(width = POPUP_WIDTH, height = POPUP_HEIGHT) {
+    try {
+      if (!window.screen || typeof window.screen.availWidth === 'undefined') return;
+      const left = Math.max(0, Math.round((window.screen.availWidth - width) / 2));
+      const top = Math.max(0, Math.round((window.screen.availHeight - height) / 2));
+      window.resizeTo(width, height);
+      window.moveTo(left, top);
+    } catch (err) {
+      console.warn('Popup centering blocked', err);
+    }
+  }
+
   // ─── Clear ───
   btnClear.addEventListener('click', () => {
     currentMarkdown = '';
@@ -159,4 +173,15 @@
 
   // ─── Init ───
   updateStats('');
+  centerWindow();
+
+  let centerTimeout = null;
+  window.addEventListener('resize', () => {
+    clearTimeout(centerTimeout);
+    centerTimeout = setTimeout(() => {
+      if (window.outerWidth <= POPUP_WIDTH || window.outerHeight <= POPUP_HEIGHT) {
+        centerWindow();
+      }
+    }, 250);
+  });
 })();

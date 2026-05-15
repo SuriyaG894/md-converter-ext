@@ -3,7 +3,7 @@
   "name": "MD to Word/PDF Converter",
   "version": "1.0.0",
   "description": "Convert Markdown to Word or PDF with live preview",
-  "permissions": ["downloads", "storage"],
+  "permissions": ["downloads", "storage", "windows"],
   "action": {
     "default_popup": "popup/popup.html",
     "default_icon": {

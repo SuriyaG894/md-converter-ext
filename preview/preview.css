@@ -117,6 +117,23 @@ body {
   cursor: not-allowed;
 }
 
+.btn-back {
+  padding: 8px 18px;
+  background: #f1f3f5;
+  color: #1a1a2e;
+  border: 1px solid #ced4da;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.btn-back:hover {
+  background: #e9ecef;
+  border-color: #adb5bd;
+}
+
 .btn-download.loading {
   opacity: 0.7;
   cursor: wait;
