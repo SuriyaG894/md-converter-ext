@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MD Converter</title>
+  <link rel="stylesheet" href="popup.css" />
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <h1>MD Converter</h1>
+      <p class="subtitle">Markdown → Word / PDF</p>
+    </header>
+
+    <div class="tabs">
+      <button class="tab-btn active" data-tab="upload">Upload File</button>
+      <button class="tab-btn" data-tab="paste">Paste Text</button>
+    </div>
+
+    <div class="tab-content active" id="tab-upload">
+      <div class="drop-zone" id="drop-zone">
+        <svg class="drop-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+          <polyline points="17 8 12 3 7 8"></polyline>
+          <line x1="12" y1="3" x2="12" y2="15"></line>
+        </svg>
+        <p class="drop-text">Drag & drop a file here</p>
+        <p class="drop-or">or</p>
+        <label class="file-label">
+          <input type="file" id="file-input" accept=".md,.markdown,.txt" hidden />
+          <span class="file-btn">Choose File</span>
+        </label>
+        <p class="file-types">Supports .md, .markdown, .txt</p>
+        <p class="file-name" id="file-name"></p>
+      </div>
+    </div>
+
+    <div class="tab-content" id="tab-paste">
+      <textarea
+        id="paste-area"
+        placeholder="# Paste your Markdown here\n\n## Getting Started\n- Write in Markdown\n- Preview before download\n- Export to Word or PDF"
+        spellcheck="false"
+      ></textarea>
+    </div>
+
+    <div class="stats">
+      <span id="word-count">0 words</span>
+      <span id="char-count">0 chars</span>
+    </div>
+
+    <div class="actions">
+      <button class="btn btn-secondary" id="btn-clear">Clear</button>
+      <button class="btn btn-primary" id="btn-preview" disabled>Preview</button>
+    </div>
+
+    <div class="status" id="status"></div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

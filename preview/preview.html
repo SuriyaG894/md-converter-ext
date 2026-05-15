@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Preview — MD Converter</title>
+  <link rel="stylesheet" href="preview.css" />
+  <link rel="stylesheet" href="../css/markdown.css" />
+</head>
+<body>
+  <div class="app">
+    <header class="toolbar">
+      <div class="toolbar-left">
+        <h1>Preview</h1>
+        <span class="file-name" id="file-name">document.md</span>
+      </div>
+      <div class="toolbar-center">
+        <span class="stat" id="word-count">0 words</span>
+      </div>
+      <div class="toolbar-right">
+        <div class="format-toggle">
+          <button class="fmt-btn active" data-format="pdf">PDF</button>
+          <button class="fmt-btn" data-format="word">Word</button>
+        </div>
+        <button class="btn-download" id="btn-download">Download</button>
+      </div>
+    </header>
+
+    <main class="preview-pane">
+      <div class="markdown-body" id="preview-container">
+        <p class="empty-state">Loading preview…</p>
+      </div>
+    </main>
+  </div>
+
+  <script src="../lib/marked.min.js"></script>
+  <script src="../lib/purify.min.js"></script>
+  <script src="../lib/html2pdf.bundle.min.js"></script>
+  <script src="../lib/jszip.min.js"></script>
+  <script src="../lib/docx-generator.js"></script>
+  <script src="preview.js"></script>
+</body>
+</html>
